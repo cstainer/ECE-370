@@ -14,33 +14,26 @@ def pos_check(debug = False):
     return [d[719], d[360], d[0]]
 
 #Begin
-debug = False
 rc.stop_robot()
 print("Initial position")
-p = pos_check(debug)
 
-rc.move_straight_time("forward", 1, p[1] - 0.75)
-print("First corner")
-p = pos_check(debug)
+while(1):
+    p = pos_check()
+    
+    if (p[1] > 6):
+        print("Go straight 6")
+        rc.move_straight_time("forward", 1, 6)
+    else:
+        print("Go straight", p[1] - 0.75)
+        rc.move_straight_time("forward", 1, p[1] - 0.75)
+    
+    p = pos_check()
 
-rc.rotate(-81)
-print("First turn")
-p = pos_check(debug)
-rc.move_straight_time("forward", 1, p[1] - 0.75)
-print("Second corner")
-p = pos_check(debug)
-
-rc.rotate(-81)
-print("Second turn")
-p = pos_check(debug)
-rc.move_straight_time("forward", 1, p[1] - 0.75)
-print("Third corner")
-p = pos_check(debug)
-
-rc.rotate(90)
-print("Third turn")
-p = pos_check(debug)
-rc.move_straight_time("forward", 1, 5)
-print("I'm out, bitches")
-p = pos_check(debug)
-print("[drops mic on stage]")
+    if (p[2] == p[0]):
+        break
+    elif (p[2] > p[0]):
+        print("Turn right")
+        rc.rotate(-80)
+    else: #if (p[2] < p[0])
+        print("Turn left")
+        rc.rotate(90)
