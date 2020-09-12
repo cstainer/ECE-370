@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="my_package" type="simple" name="ex14"  output="screen">
+    </node>
+</launch>
