@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="topic_publisher_pkg" type="simple_topic_publisher" name="ex21"  output="screen">
+    </node>
+</launch>

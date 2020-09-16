@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="topic_subscriber_pkg" type="simple_topic_subscriber" name="ex23"  output="screen">
+    </node>
+</launch>
