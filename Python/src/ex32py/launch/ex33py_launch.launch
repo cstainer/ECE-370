@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="ex32py" type="Age_pub.py" name="age_subscriber"  output="screen">
+    </node>
+    <node pkg="ex32py" type="Age_sub.py" name="age"  output="screen">
+    </node>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="ex32py" type="ex32.py" name="ex32py"  output="screen">
+    </node>
+</launch>
