@@ -1,0 +1,21 @@
+<launch>
+
+    <node   pkg = "keyboard_input"
+            type = "keyboard_input.py"
+            name = "keyboard_input_node"
+            output = "screen">
+    </node>
+
+    <node   pkg = "move_turtlebot"
+            type = "move_turtlebot.py"
+            name = "move_turtlebot_node"
+            output = "screen">
+    </node>
+
+    <node   pkg = "watchdog"
+            type = "watchdog.py"
+            name = "watchdog_node"
+            output = "screen">
+    </node>
+
+</launch>
