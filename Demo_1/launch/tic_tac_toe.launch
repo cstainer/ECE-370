@@ -1,0 +1,21 @@
+<launch>
+
+    <node   pkg = "tic_tac_toe"
+            type = "keyboard_input.py"
+            name = "ttt_key"
+            output = "screen">
+    </node>
+
+    <node   pkg = "tic_tac_toe"
+            type = "turtle_ttt.py"
+            name = "turtle_ttt"
+            output = "screen">
+    </node>
+
+    <node   pkg = "tic_tac_toe"
+            type = "tic_tac_toe.py"
+            name = "ttt"
+            output = "screen">
+    </node>
+
+</launch>

@@ -1,0 +1,24 @@
+<robot name="red_piece">
+  <link name="red_00">
+    <inertial>
+      <origin xyz="0 0 0.1" />
+      <mass value="0.25"/>
+      <inertia ixx="1.0"  ixy="0.0"  ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.1" />
+      <geometry>
+        <box size="0.3 0.3 0.5" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.1" />
+      <geometry>
+        <box size="0.3 0.3 0.5" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="red_00">
+    <material>Gazebo/Red</material>
+  </gazebo>
+</robot>
