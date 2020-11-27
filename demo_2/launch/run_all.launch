@@ -1,0 +1,15 @@
+<launch>
+
+    <node   pkg = "demo_2"
+            type = "keyboard_control.py"
+            name = "keyboard_control_node"
+            output = "screen">
+    </node>
+
+    <node   pkg = "demo_2"
+            type = "ddr_control.py"
+            name = "ddr_control_node"
+            output = "screen">
+    </node>
+
+</launch>
