@@ -12,4 +12,10 @@
             output = "screen">
     </node>
 
+    <node   pkg = "demo_2"
+            type = "box_control.py"
+            name = "box_control_node"
+            output = "screen">
+    </node>
+
 </launch>
