@@ -4,8 +4,7 @@ import rospy
 from gazebo_msgs.srv import ApplyJointEffort, GetJointProperties
 from gazebo_msgs.msg import ModelState, ModelStates
 from std_msgs.msg import String
-from os import system, devnull
-from subprocess import call
+from os import system
 
 # API for controlling a differential drive robot
 class DD_Robot_Control:
@@ -103,17 +102,12 @@ def parse(msg):
     ddr0.setEffort(wheel=l[0], effort=float(l[2]), direction=l[1], duration=float(l[3]))
 
 # create the model of the robot
-#with open(devnull, 'w') as FNULL:
-# TODO fix indent!
 try:
-    #call("./del_robot.h ddr_0", stdout=FNULL)
-    system("rosservice call gazebo/delete_model ddr_0")
+    system("/home/user/catkin_ws/src/demo_2/src/del_robot.sh ddr_0")
 except:
     pass
 finally:
-    #call("./robot.h ddr_0", stdout=FNULL)
-    system("rosrun gazebo_ros spawn_model -file /home/user/catkin_ws/src/demo_2/models/ddr.sdf -sdf -model ddr_0")
-    #close(FNULL) # TODO is this necessary? or even legal?  I kinda don't think so
+    system("/home/user/catkin_ws/src/demo_2/src/robot.sh ddr_0")
 
 sub = rospy.Subscriber('/key2ddr', String, parse)
 rospy.spin()

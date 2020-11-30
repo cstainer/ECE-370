@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 import rospy
-from os import system, devnull
+from os import system
 from gazebo_msgs.msg import ModelStates
-from subprocess import call
 
 flag = False
 x_pos_boxes = [] # x = 26.25
@@ -202,7 +201,6 @@ def calc_all_boxes(msg):
     y_neg_boxes.sort()
 
 # find the closest box in the list of possible boxes
-# https://www.geeksforgeeks.org/python-find-closest-number-to-k-in-given-list/ 
 def find_closest(r, b_list):
     return b_list[min(range(len(b_list)), key = lambda i: abs(b_list[i]-r))] 
 
@@ -233,9 +231,7 @@ def check(msg):
                 # else the closet box has not yet been dropped
                 else:
                     # drop box at (26.25, closest)
-                    #with open(devnull, 'w') as FNULL:      # TODO finish this!
-                    #    call("./drop_box.sh " + str(26.25) + " " + str(closest) + " box" + str(box_serial_number), stdout=FNULL)
-                    system("rosrun gazebo_ros spawn_model -file /home/user/catkin_ws/src/demo_2/models/box.urdf -urdf -x " + str(26.25) + " -y " + str(closest) + " -model box" + str(box_serial_number))
+                    system("/home/user/catkin_ws/src/demo_2/src/drop_box.sh " + str(26.25) + " " + str(closest) + " box" + str(box_serial_number))
                     box_serial_number += 1
                     dropped_boxes.append((26.25, closest))
 
@@ -251,9 +247,7 @@ def check(msg):
                 # else the closest box has not yet been dropped
                 else:
                     # drop box at (-26.25, closest)
-                    #with open(devnull, 'w') as FNULL:      # TODO finish this!
-                    #    call("./drop_box.sh " + str(-26.25) + " " + str(closest) + " box" + str(box_serial_number), stdout=FNULL)
-                    system("rosrun gazebo_ros spawn_model -file /home/user/catkin_ws/src/demo_2/models/box.urdf -urdf -x " + str(-26.25) + " -y " + str(closest) + " -model box" + str(box_serial_number))
+                    system("/home/user/catkin_ws/src/demo_2/src/drop_box.sh " + str(-26.25) + " " + str(closest) + " box" + str(box_serial_number))
                     box_serial_number += 1
                     dropped_boxes.append((-26.25, closest))
 
@@ -269,9 +263,7 @@ def check(msg):
                 # else the closest box has not yet been dropped
                 else:
                     # drop box at (closest, 26.25)
-                    #with open(devnull, 'w') as FNULL:      # TODO finish this!
-                    #    call("./drop_box.sh " + str(closest) + " " + str(26.25) + " box" + str(box_serial_number), stdout=FNULL)
-                    system("rosrun gazebo_ros spawn_model -file /home/user/catkin_ws/src/demo_2/models/box.urdf -urdf -x " + str(closest) + " -y " + str(26.25) + " -model box" + str(box_serial_number))
+                    system("/home/user/catkin_ws/src/demo_2/src/drop_box.sh " + str(closest) + " " + str(26.25) + " box" + str(box_serial_number))
                     box_serial_number += 1
                     dropped_boxes.append((closest, 26.25))
 
@@ -286,9 +278,7 @@ def check(msg):
                     pass
                 else:
                     # drop box at (closest, -26.25)
-                    #with open(devnull, 'w') as FNULL:      # TODO finish this!
-                    #    call("./drop_box.sh " + str(closest) + " " + str(-26.25) + " box" + str(box_serial_number), stdout=FNULL)
-                    system("rosrun gazebo_ros spawn_model -file /home/user/catkin_ws/src/demo_2/models/box.urdf -urdf -x " + str(closest) + " -y " + str(-26.25) + " -model box" + str(box_serial_number))
+                    system("/home/user/catkin_ws/src/demo_2/src/drop_box.sh " + str(closest) + " " + str(-26.25) + " box" + str(box_serial_number))
                     box_serial_number += 1
                     dropped_boxes.append((closest, -26.25))
     except IndexError:
@@ -298,5 +288,4 @@ def check(msg):
 
 rospy.init_node('box_control_node')
 sub = rospy.Subscriber('/gazebo/model_states', ModelStates, check)
-m = ModelStates()
 rospy.spin()

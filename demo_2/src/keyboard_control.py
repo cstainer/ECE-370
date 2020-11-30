@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-# https://pythonpedia.com/en/tutorial/5851/basic-curses-with-python curses stuff started with this code
 import curses
 import traceback
 import rospy
