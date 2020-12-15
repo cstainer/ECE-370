@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+HOME=/home/user
+INSTALL_DIR=$HOME/etc/stainerCharles
+PROJECT_NAME=final
+
+Install()
+{
+    mkdir -p $INSTALL_DIR
+    cp -r /home/user/catkin_ws/src/final/ $INSTALL_DIR/
+    export PATH="$PATH:$INSTALL_DIR/$PROJECT_NAME/"
+    echo "Install complete."
+}
+
+Start()
+{
+    roslaunch final run_all.launch
+}
+
+Uninstall()
+{
+    rm -r ~/etc
+}
+
+case $1 in
+'start')
+    Start
+    ;;
+'install')
+    Install
+    ;;
+'uninstall')
+    Uninstall
+    ;;
+    esac
+

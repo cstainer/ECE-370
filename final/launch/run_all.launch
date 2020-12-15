@@ -1,0 +1,15 @@
+<launch>
+
+    <node   pkg = "final"
+            type = "keyboard_control.py"
+            name = "keyboard_control_node"
+            output = "screen">
+    </node>
+
+    <node   pkg = "final"
+            type = "final_control.py"
+            name = "final_control_node"
+            output = "screen">
+    </node>
+
+</launch>
